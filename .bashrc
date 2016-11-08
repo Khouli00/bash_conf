@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -57,27 +57,28 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\[$(tput setaf 5)\]\w\n\[$(tput setaf 4)\]#\[$(tput setaf 7)\]\h \[$(tput sgr0)\]"
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#    ;;
+#*)
+#    ;;
+#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -116,8 +117,32 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#Anaconda
-export PATH=/home/vagrant/anaconda3/bin:$PATH
-#custom lib
-export PYTHONPATH=/home/vagrant/lcdn/lib:$PYTHONPATH
+# Color stuff
+#COLOR_THEME=molokai
+#source ~/terminal-color-theme/color-theme-${COLOR_THEME}/${COLOR_THEME}.sh
+TERM=xterm-256color
+echo -ne '\e]10;#A0A0A0\a'
+echo -ne '\e]11;#1B1D1E\a'
+echo -ne '\e]12;#A0A0A0\a'
+echo -ne '\e]4;0;#1B1D1E\a'
+echo -ne '\e]4;1;#F92672\a'
+echo -ne '\e]4;2;#82B414\a'
+echo -ne '\e]4;3;#FD971F\a'
+echo -ne '\e]4;4;#268BD2\a'
+echo -ne '\e]4;5;#8C54FE\a'
+echo -ne '\e]4;6;#56C2D6\a'
+echo -ne '\e]4;7;#CCCCC6\a'
+echo -ne '\e]4;9;#FF5995\a'
+echo -ne '\e]4;8;#505354\a'
+echo -ne '\e]4;10;#B7EB46\a'
+echo -ne '\e]4;11;#FEED6C\a'
+echo -ne '\e]4;12;#62ADE3\a'
+echo -ne '\e]4;13;#BFA0FE\a'
+echo -ne '\e]4;14;#94D8E5\a'
+echo -ne '\e]4;15;#F8F8F2\a'
 
+# Anaconda
+export PATH=/home/vagrant/anaconda3/bin:$PATH
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
