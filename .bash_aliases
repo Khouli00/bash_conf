@@ -5,3 +5,4 @@ alias pyspark='IPYTHON=1 /home/vagrant/spark/spark-1.6.2-bin-hadoop2.6/bin/pyspa
 alias django_test='python manage.py runserver 0.0.0.0:8000'
 alias pull_all='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull origin master \;'
 alias push_all='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} push origin master \;'
+alias commit_all='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} commit -a \;'
