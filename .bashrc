@@ -140,9 +140,3 @@ echo -ne '\e]4;12;#62ADE3\a'
 echo -ne '\e]4;13;#BFA0FE\a'
 echo -ne '\e]4;14;#94D8E5\a'
 echo -ne '\e]4;15;#F8F8F2\a'
-
-# Anaconda
-export PATH=/home/vagrant/anaconda3/bin:$PATH
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
